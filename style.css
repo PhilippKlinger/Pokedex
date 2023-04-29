@@ -7,3 +7,8 @@ body {
     flex-wrap: wrap;
     justify-content: center;
 }
+
+.pokemonPic {
+    height: 200px;
+    object-fit: contain;
+}
