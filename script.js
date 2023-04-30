@@ -1,75 +1,61 @@
-let pokemonCount = 1;
-let pokemonData;
+let pokemonCount = 50;
+let pokemonContent = [];
 
-
-
-async function loadAllPokemon() {
+async function loadPokemonData() {
   for (let i = 0; i < pokemonCount; i++) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${i+1}/`;
+    let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
     let response = await fetch(url);
-    pokemonData = await response.json();
-    showPokemonList();
+    let responseAsJSON = await response.json();
+    pokemonContent.push(responseAsJSON);
   }
+  showPokemonList();
 }
 
 function showPokemonList() {
-  let pokemonName = pokemonData['name'];
-  let pokemonId = pokemonData['id'];
-  let pokemonPic = pokemonData['sprites']['other']['home']['front_shiny'];
-  let pokemonStats = pokemonData['stats'];
-  let pokemonType = pokemonData['types'][0]['type']['name'];
-  let pokemonHeight = pokemonData['height'];
-  let pokemonWeight = pokemonData['weight'];
-  let pokemonBaseExp = pokemonData['base_experience'];
-  let pokemonAbility = pokemonData['abilities'][0]['ability']['name'];
-  let movesCount = pokemonData['moves'];
-
-  document.getElementById('pokemonList').innerHTML += /*html*/ `
-    <div class="card m-2" style="width: 18rem;">
-    <div class="card-body">
-      <h3 class="card-title">${pokemonName}</h3>
-      <h5 class="card-title">#${pokemonId}</h5>
-    </div>
-    <img src="${pokemonPic}" class="card-img-top pokemonPic">
-    <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Profile
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      <ul class="list-group list-group-flush">
-      <li class="list-group-item">type: ${pokemonType}</li>
-      <li class="list-group-item">height: ${pokemonHeight}0 cm</li>
-      <li class="list-group-item">weight: ${pokemonWeight}0 g</li>
-      <li class="list-group-item">base experience: ${pokemonBaseExp}</li>
-      <li class="list-group-item">ability: ${pokemonAbility}</li>
-      <li class="list-group-item">moves count: ${movesCount.length}</li>
-    </ul>
-      </div>
-    </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-      Base Stats
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      <ul class="list-group list-group-flush">
-      <li class="list-group-item">${pokemonStats[0]['stat']['name']} -> ${pokemonStats[0]['base_stat']}</li>
-      <li class="list-group-item">${pokemonStats[1]['stat']['name']} -> ${pokemonStats[1]['base_stat']}</li>
-      <li class="list-group-item">${pokemonStats[2]['stat']['name']} -> ${pokemonStats[2]['base_stat']}</li>
-      <li class="list-group-item">${pokemonStats[3]['stat']['name']} -> ${pokemonStats[3]['base_stat']}</li>
-      <li class="list-group-item">${pokemonStats[4]['stat']['name']} -> ${pokemonStats[4]['base_stat']}</li>
-      <li class="list-group-item">${pokemonStats[5]['stat']['name']} -> ${pokemonStats[5]['base_stat']}</li>
-    </ul>
-   </div>
-`
+  for (let i = 0; i < pokemonContent.length; i++) {
+    let pokemonName = pokemonContent[i]['name'];
+    let pokemonId = pokemonContent[i]['id'];
+    let pokemonPic = pokemonContent[i]['sprites']['other']['home']['front_shiny'];
+    let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
+    document.getElementById('pokemonList').innerHTML += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType);
+  }
 }
 
+function showPokemonDetails(i) {
+  renderPokemonDetailCard(i);
+  renderPokemonDetailContent(i);
+}
 
+function renderPokemonDetailCard(i) {
+  document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML();}
 
+function renderPokemonDetailContent(i) {
+  renderPokemonDetailCardHead(i);
+  renderPokemonDetailCardMiddle(i);
+  renderPokemonDetailCardBottom(i);
+}
+
+function renderPokemonDetailCardHead(i) {
+  let pokemonName = pokemonContent[i]['name'];
+  let pokemonId = pokemonContent[i]['id'];
+  let pokemonPic = pokemonContent[i]['sprites']['other']['home']['front_shiny'];
+  document.getElementById('pokemonDetailCardHead').innerHTML = generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId);
+  document.getElementById('pokemonDetailCardPic').src = pokemonPic;
+}
+
+function renderPokemonDetailCardMiddle(i) {
+  let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
+  let pokemonAbility = pokemonContent[i]['abilities'][0]['ability']['name'];
+  let pokemonHeight = pokemonContent[i]['height'];
+  let pokemonWeight = pokemonContent[i]['weight'];
+  let pokemonBaseExp = pokemonContent[i]['base_experience'];
+  let movesCount = pokemonContent[i]['moves'];
+  document.getElementById('pokemonDetailCardProfile').innerHTML = generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight);
+}
+
+function renderPokemonDetailCardBottom(i) {
+  let pokemonStats = pokemonContent[i]['stats'];
+  for (let j = 0; j < pokemonStats.length; j++) {
+    document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStasHTML(pokemonStats, j);
+  }
+}
