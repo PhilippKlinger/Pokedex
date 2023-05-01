@@ -8,10 +8,10 @@ function generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonT
   <img src="${pokemonPic}" class="card-img-top pokemonPic">`
   }
   
-  function generatePokemonDetailCardHTML() {
+  function generatePokemonDetailCardHTML(pokemonType) {
     return /*html*/ `
     <div class="card m-2" style="width: 18rem;">
-    <div class="card-body" id="pokemonDetailCardHead">
+    <div class="card-body ${pokemonType}-color radius" id="pokemonDetailCardHead">
     </div>
     <img class="card-img-top pokemonPic" id="pokemonDetailCardPic">
     <div class="accordion" id="accordionExample">

@@ -32,12 +32,15 @@
         </div>
     </nav>
 
-    <div class="pokemonDetailOverlay" id="pokemonDetailOverlay">
+    <div class="pokemonDetailOverlay" id="pokemonDetailOverlay" onclick="closePokemonDetailOverlay()">
     </div>
 
     <div class="pokemonList" id="pokemonList"></div>
 
-    <button type="button" class="btn btn-outline-success" onclick="loadMorePokemon()">Load more Pokemon</button>
+    <div class="pokemonLoadingBtn">
+        <button type="button" class="btn btn-outline-success" onclick="loadMorePokemon()">Show more Pokemon</button>
+    </div>
+    
 </body>
 
 </html>
