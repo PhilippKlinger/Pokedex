@@ -17,6 +17,13 @@ body {
     margin-top: 0;
 }
 
+.pokemonPicDetail {
+    height: 250px;
+    object-fit: contain;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
 .pokemonCard:hover {
     cursor: pointer;
     opacity: 0.4;

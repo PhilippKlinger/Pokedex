@@ -1,19 +1,25 @@
 function generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType) {
-    return  /*html*/ `
-    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" style="width: 12rem;">
+  return  /*html*/ `
+    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" style="width: 12rem" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
     <div class="card-body">
       <h3 class="card-title">${pokemonName}</h3>
       <h5 class="card-title">#${pokemonId} ${pokemonType}</h5>
   </div>
   <img src="${pokemonPic}" class="card-img-top pokemonPic">`
-  }
-  
-  function generatePokemonDetailCardHTML(pokemonType) {
-    return /*html*/ `
-    <div class="card m-2" style="width: 18rem;">
+}
+
+/** */
+
+function generatePokemonDetailCardHTML(i, pokemonType) {
+  return /*html*/ `
+    <div>
+    <button onclick="showPreviousPokemonDetailCard(${i})">back</button>               
+    <button onclick="showNextPokemonDetailCard(${i})">next</button>
+    </div>
+    <div class="card m-2" style="width: 20rem;">
     <div class="card-body ${pokemonType}-color radius" id="pokemonDetailCardHead">
     </div>
-    <img class="card-img-top pokemonPic" id="pokemonDetailCardPic">
+    <img class="card-img-top pokemonPicDetail" id="pokemonDetailCardPic">
     <div class="accordion" id="accordionExample">
   <div class="accordion-item">
     <h2 class="accordion-header">
@@ -40,24 +46,24 @@ function generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonT
     </ul>
    </div>
   `
-  }
-  
-  function generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId) {
-    return /*html*/ `
+}
+
+function generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId) {
+  return /*html*/ `
     <h3 class="card-title">${pokemonName}</h3>
     <h5 class="card-title">#${pokemonId}</h5>`
-  }
-  
-  function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight) {
-    return /*html*/  `
+}
+
+function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight) {
+  return /*html*/  `
     <li class="list-group-item">type: ${pokemonType}</li>
     <li class="list-group-item">height: ${pokemonHeight}0 cm</li>
     <li class="list-group-item">weight: ${pokemonWeight}0 g</li>
     <li class="list-group-item">base experience: ${pokemonBaseExp}</li>
     <li class="list-group-item">ability: ${pokemonAbility}</li>
     <li class="list-group-item">moves count: ${movesCount.length}</li>`
-  }
-  
-  function generatePokemonCardDetailCardStasHTML(pokemonStats, j) {
-    return /*html*/ `<li class="list-group-item">${pokemonStats[j]['stat']['name']} -> ${pokemonStats[j]['base_stat']}</li>`
-  }
+}
+
+function generatePokemonCardDetailCardStasHTML(pokemonStats, j) {
+  return /*html*/ `<li class="list-group-item">${pokemonStats[j]['stat']['name']} -> ${pokemonStats[j]['base_stat']}</li>`
+}

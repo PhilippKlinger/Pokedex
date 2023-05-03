@@ -5,15 +5,13 @@ let pokemonAmount = 1010;
 
 async function loadPokemonData() {
   for (let i = pokemonRange; i < pokemonCount; i++) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${i+1}/`;
+    let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
     let response = await fetch(url);
     let responseAsJSON = await response.json();
     pokemonContent.push(responseAsJSON);
   }
   showPokemonList();
 }
-
-
 
 function showPokemonList() {
   for (let i = pokemonRange; i < pokemonContent.length; i++) {
@@ -26,14 +24,14 @@ function showPokemonList() {
 }
 
 function showPokemonDetails(i) {
-  document.getElementById('pokemonDetailOverlay').classList.remove('d-none');
   renderPokemonDetailCard(i);
   renderPokemonDetailContent(i);
 }
 
 function renderPokemonDetailCard(i) {
   let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
-  document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML(pokemonType);}
+  document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML(i, pokemonType);
+}
 
 function renderPokemonDetailContent(i) {
   renderPokemonDetailCardHead(i);
@@ -70,9 +68,25 @@ function loadMorePokemon() {
   pokemonRange += 20;
   pokemonCount += 20;
   loadPokemonData();
+  document.getElementById('showMorePokemonButton').classList.add('d-none');
+  document.getElementById('loadingSpinner').classList.remove('d-none');
 }
 
-function closePokemonDetailOverlay() {
-  document.getElementById('pokemonDetailOverlay').classList.add('d-none');
-  
+function showNextPokemonDetailCard(i) {
+  if (i == (pokemonContent.length - 1)) {
+    i = 0;
+  } else {
+    i++;
+  }
+  showPokemonDetails(i);
+}
+
+function showPreviousPokemonDetailCard(i) {
+  if (i > 0) {
+    i--;
+  } else {
+    i = pokemonContent.length;
+    i--;
+  }
+  showPokemonDetails(i);
 }
