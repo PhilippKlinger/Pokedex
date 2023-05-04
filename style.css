@@ -1,7 +1,6 @@
 body {
     margin: 0;
     background-color: rgb(248,249,250) !important;
-
 }
 
 .pokemonList {
@@ -11,7 +10,7 @@ body {
 }
 
 .pokemonPic {
-    height: 150px;
+    height: 100px;
     object-fit: contain;
     padding-bottom: 10px;
     margin-top: 0;
@@ -51,3 +50,17 @@ body {
 .whiteFont {
     color: white !important;
 }
+
+.spinner { 
+    height: 50px;
+    animation: spinner 1.2s infinite linear;
+}
+
+  @keyframes spinner {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }

@@ -5,7 +5,7 @@ function generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonT
       <h3 class="card-title">${pokemonName}</h3>
       <h5 class="card-title">#${pokemonId} ${pokemonType}</h5>
   </div>
-  <img src="${pokemonPic}" class="card-img-top pokemonPic">`
+  <img src="${pokemonPic}" class="card-img-top pokemonPic" id="pokemonListPic${i}">`
 }
 
 /** */

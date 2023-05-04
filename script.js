@@ -1,8 +1,3 @@
-let pokemonRange = 0;
-let pokemonCount = 20;
-let pokemonContent = [];
-let pokemonAmount = 1010;
-
 async function loadPokemonData() {
   for (let i = pokemonRange; i < pokemonCount; i++) {
     let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
@@ -15,10 +10,8 @@ async function loadPokemonData() {
 
 function showPokemonList() {
   for (let i = pokemonRange; i < pokemonContent.length; i++) {
-    let pokemonName = pokemonContent[i]['name'];
-    let pokemonId = pokemonContent[i]['id'];
-    let pokemonPic = pokemonContent[i]['sprites']['other']['home']['front_shiny'];
-    let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
+    const pokemon = pokemonContent[i];
+    const { pokemonName, pokemonId, pokemonPic, pokemonType } = getPokemonInfo(pokemon);
     document.getElementById('pokemonList').innerHTML += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType);
   }
 }
@@ -29,7 +22,8 @@ function showPokemonDetails(i) {
 }
 
 function renderPokemonDetailCard(i) {
-  let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
+  const pokemon = pokemonContent[i];
+  const { pokemonType } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML(i, pokemonType);
 }
 
@@ -40,36 +34,44 @@ function renderPokemonDetailContent(i) {
 }
 
 function renderPokemonDetailCardHead(i) {
-  let pokemonName = pokemonContent[i]['name'];
-  let pokemonId = pokemonContent[i]['id'];
-  let pokemonPic = pokemonContent[i]['sprites']['other']['home']['front_shiny'];
+  const pokemon = pokemonContent[i];
+  const { pokemonName, pokemonId, pokemonPic } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailCardHead').innerHTML = generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId);
   document.getElementById('pokemonDetailCardPic').src = pokemonPic;
 }
 
 function renderPokemonDetailCardMiddle(i) {
-  let pokemonType = pokemonContent[i]['types'][0]['type']['name'];
-  let pokemonAbility = pokemonContent[i]['abilities'][0]['ability']['name'];
-  let pokemonHeight = pokemonContent[i]['height'];
-  let pokemonWeight = pokemonContent[i]['weight'];
-  let pokemonBaseExp = pokemonContent[i]['base_experience'];
-  let movesCount = pokemonContent[i]['moves'];
+  const pokemon = pokemonContent[i];
+  const { movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailCardProfile').innerHTML = generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight);
 }
 
 function renderPokemonDetailCardBottom(i) {
-  let pokemonStats = pokemonContent[i]['stats'];
+  const pokemon = pokemonContent[i];
+  const { pokemonStats } = getPokemonInfo(pokemon); 
   for (let j = 0; j < pokemonStats.length; j++) {
     document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStasHTML(pokemonStats, j);
   }
 }
 
-function loadMorePokemon() {
-  pokemonRange += 20;
-  pokemonCount += 20;
-  loadPokemonData();
+async function loadMorePokemon() {
+  hideLoadMorePokemon();
+  await loadPokemonData();
+  showLoadMorePokemon();
+}
+
+function hideLoadMorePokemon() {
   document.getElementById('showMorePokemonButton').classList.add('d-none');
   document.getElementById('loadingSpinner').classList.remove('d-none');
+  window.scrollTo(0, 99999);
+  pokemonRange += 20;
+  pokemonCount += 20;
+}
+
+function showLoadMorePokemon() {
+  window.scrollTo(0, 99999);
+  document.getElementById('showMorePokemonButton').classList.remove('d-none');
+  document.getElementById('loadingSpinner').classList.add('d-none');
 }
 
 function showNextPokemonDetailCard(i) {
@@ -89,4 +91,24 @@ function showPreviousPokemonDetailCard(i) {
     i--;
   }
   showPokemonDetails(i);
+}
+
+function searchPokemonList() {
+  
+  let pokemonList = document.getElementById('pokemonList').innerHTML;
+  pokemonList = "";
+
+  
+
+  
+
+  for (let i = pokemonRange; i < pokemonContent.length; i++) {
+    let search = document.getElementById('searchbar').value;
+    const pokemon = pokemonContent[i];
+    const { pokemonName, pokemonId, pokemonPic, pokemonType } = getPokemonInfo(pokemon);
+    let searchinput = pokemon.includes(search);
+      if (searchinput) {
+        pokemonList += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType);
+      }
+  }
 }
