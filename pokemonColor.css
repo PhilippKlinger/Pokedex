@@ -1,71 +1,71 @@
 .grass-color {
-    background-color: rgb(74,196,49) !important;
+    background-color: rgb(133, 161, 108, 0.7) !important;
 }
 
 .fire-color {
-    background-color: rgb(212,34,34) !important;
+    background-color: rgb(212, 34, 34, 0.7) !important;
 }
 
 .water-color {
-    background-color: rgb(45,154,227) !important;
+    background-color: rgb(45, 154, 227, 0.7) !important;
 }
 
 .bug-color {
-    background-color: rgb(194,209,92) !important;
+    background-color: rgb(194, 209, 92, 0.7) !important;
 }
 
 .normal-color {
-    background-color: rgb(209,208,206) !important;
+    background-color: rgb(209, 208, 206, 0.7) !important;
 }
 
 .poison-color {
-    background-color: rgb(157,83,182) !important;
+    background-color: rgb(157, 83, 182, 0.7) !important;
 }
 
 .electric-color {
-    background-color: rgb(255,207,8) !important;
+    background-color: rgb(255, 207, 8, 0.7) !important;
 }
 
 .ground-color {
-    background-color: rgb(138,101,73) !important;
+    background-color: rgb(138, 101, 73, 0.7) !important;
 }
 
 .fairy-color {
-    background-color: rgb(242,128,168) !important;
+    background-color: rgb(242, 128, 168, 0.7) !important;
 }
 
 .fighting-color {
-    background-color: rgb(225,125,68) !important;
+    background-color: rgb(225, 125, 68, 0.7) !important;
 }
 
 .psychic-color {
-    background-color: rgb(255,89,102) !important;
+    background-color: rgb(255, 89, 102, 0.7) !important;
 }
 
 .rock-color {
-    background-color: rgb(182,167,128) !important;
+    background-color: rgb(182, 167, 128, 0.7) !important;
 }
 
 .ghost-color {
-    background-color: rgb(91,74,100) !important;
+    background-color: rgb(91, 74, 100, 0.7) !important;
 }
 
 .ice-color {
-    background-color: rgb(95,237,235) !important;
+    background-color: rgb(95, 237, 235, 0.7) !important;
 }
 
 .dark-color {
-    background-color: rgb(74,72,79) !important;
+    background-color: rgb(74, 72, 79, 0.7) !important;
 }
 
 .steel-color {
-    background-color: rgb(143,142,147) !important;
+    background-color: rgb(143, 142, 147, 0.7) !important;
 }
 
 .dragon-color {
-    background-color: rgb(69,102,160) !important;
+    background-color: rgb(69, 102, 160, 0.7) !important;
 }
 
 .flying-color {
-    background-color: rgb(174,211,239) !important;
+    background-color: rgb(174, 211, 239, 0.7) !important;
 }

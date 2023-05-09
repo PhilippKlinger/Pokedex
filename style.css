@@ -1,6 +1,10 @@
 body {
     margin: 0;
-    background-color: rgb(248,249,250) !important;
+    background-color: rgb(248, 249, 250) !important;
+}
+
+.headlinePic {
+    background-color: rgb(248, 249, 250)
 }
 
 .pokemonList {
@@ -9,11 +13,31 @@ body {
     justify-content: center;
 }
 
+.pokemonListPic {
+    display: flex;
+    position: relative;
+}
+
+.pokemonListPicBg {
+    height: 150px;
+    position: relative;
+    left: 50px;
+}
+
 .pokemonPic {
-    height: 100px;
-    object-fit: contain;
-    padding-bottom: 10px;
+    height: 120px;
+    /* object-fit: contain; */
+    /* padding-bottom: 10px; */
     margin-top: 0;
+    z-index: 1;
+    position: relative;
+    right: 100px;
+    top: 20px;
+}
+
+.pokemonPic:hover {
+    transition: ease-in-out 200ms;
+    transform: scale(1.2);
 }
 
 .pokemonPicDetail {
@@ -28,13 +52,52 @@ body {
     opacity: 0.4;
 }
 
+.pokemonDetailCardButtons {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    top: 125px;
+}
+
+.pokemonDetailCardButtons img:hover {
+    cursor: pointer;
+    transform: scale(1.2);
+    transition: ease-in-out 150ms;
+}
+
+.card {
+    box-shadow: 5px 6px 11px 0px rgba(0, 0, 0, 0.75);
+}
+
+.shadow {
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.3) !important;
+}
+
+.shadow2 {
+    box-shadow: 5px 6px 11px 0px rgba(0, 0, 0, 0.75);
+}
+
 .card-title {
-    margin-bottom: 0 !important;
+    margin-bottom: 4px !important;
+    background-color: rgb(255, 255, 255, 0.15);
+    border: solid 1px transparent;
+    border-radius: 5px;
+    padding: 2px;
+    width: fit-content;
 }
 
 .pokemonDetailOverlay {
-    display: flex;
-    justify-content: center;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.modal-content {
+    align-items: center !important;
+    border: none !important;
+}
+
+.modal {
+    --bs-modal-width: 0 !important;
 }
 
 .pokemonLoadingBtn {
@@ -51,16 +114,25 @@ body {
     color: white !important;
 }
 
-.spinner { 
+.progress-bar-striped {
+    background-image: linear-gradient(90deg,rgba(255,255,255,.15) 50%,transparent 50%,transparent 80%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent) !important;
+}
+
+.progress, .progress-stacked {
+    height: 30px !important;
+}
+
+.spinner {
     height: 50px;
     animation: spinner 1.2s infinite linear;
 }
 
-  @keyframes spinner {
+@keyframes spinner {
     from {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
+
     to {
-      transform: rotate(359deg);
+        transform: rotate(359deg);
     }
-  }
+}

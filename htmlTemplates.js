@@ -2,49 +2,40 @@ function generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonT
   return  /*html*/ `
     <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" style="width: 12rem" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
     <div class="card-body">
-      <h3 class="card-title">${pokemonName}</h3>
-      <h5 class="card-title">#${pokemonId} ${pokemonType}</h5>
+      <h4 class="card-title">${pokemonName}</h4>
   </div>
-  <img src="${pokemonPic}" class="card-img-top pokemonPic" id="pokemonListPic${i}">`
+  <div class="pokemonListPic">
+    <img src="./img/pokeball_bg1.png" class="pokemonListPicBg">
+    <img src="${pokemonPic}" class="card-img-top pokemonPic" id="pokemonListPic${i}">
+  </div>
+  `
 }
 
 /** */
 
-function generatePokemonDetailCardHTML(i, pokemonType) {
+function generatePokemonDetailCardHTML(i, pokemonType, pokemonPic) {
   return /*html*/ `
-    <div>
-    <button onclick="showPreviousPokemonDetailCard(${i})">back</button>               
-    <button onclick="showNextPokemonDetailCard(${i})">next</button>
-    </div>
-    <div class="card m-2" style="width: 20rem;">
+    <div class="card m-2 shadow" style="width: 24rem;">
     <div class="card-body ${pokemonType}-color radius" id="pokemonDetailCardHead">
     </div>
+    <div class="pokemonDetailCardButtons">
+    <img src="./img/arrow-left.png" onclick="showPreviousPokemonDetailCard(${i})">               
+    <img src="./img/arrow-right.png" onclick="showNextPokemonDetailCard(${i})">
+  </div>
     <img class="card-img-top pokemonPicDetail" id="pokemonDetailCardPic">
-    <div class="accordion" id="accordionExample">
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-        Profile
-      </button>
-    </h2>
-    <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      <ul class="list-group list-group-flush" id="pokemonDetailCardProfile">
+  <div>
+    <button onclick="changeDetailContentToProfile()">Stats</button>
+    <button onclick="changeDetailContentToStats()">Profile</button>
+    <button onclick="changeDetailContentTo">Evolution</button>
+  </div>
+    <div>
+    <ul class="list-group list-group-flush" id="pokemonDetailCardProfile">
     </ul>
+    </div>
+    <div>
+    <div class="" id="pokemonDetailCardStats">
       </div>
     </div>
-  </div>
-  <div class="accordion-item">
-    <h2 class="accordion-header">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-      Base Stats
-      </button>
-    </h2>
-    <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
-      <div class="accordion-body">
-      <ul class="list-group list-group-flush" id="pokemonDetailCardStats">
-    </ul>
-   </div>
   `
 }
 
@@ -64,6 +55,12 @@ function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, po
     <li class="list-group-item">moves count: ${movesCount.length}</li>`
 }
 
-function generatePokemonCardDetailCardStasHTML(pokemonStats, j) {
-  return /*html*/ `<li class="list-group-item">${pokemonStats[j]['stat']['name']} -> ${pokemonStats[j]['base_stat']}</li>`
+function generatePokemonCardDetailCardStasHTML(pokemonStats, pokemonType, actualValue, j) {
+  return /*html*/ `
+    <div class="">
+    <p>${pokemonStats[j]['stat']['name']}</p>
+      <div class="progress" role="progressbar" aria-label="Animated striped example" aria-valuenow="${pokemonStats[j]['base_stat']}" aria-valuemin="0" aria-valuemax="${maxPokemonStats[j]}">
+      <div class="progress-bar ${pokemonType}-color progress-bar-striped progress-bar-animated" style="width: ${actualValue}%">${pokemonStats[j]['base_stat']}</div>
+  </div>
+</div>`
 }

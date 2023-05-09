@@ -25,6 +25,7 @@ function renderPokemonDetailCard(i) {
   const pokemon = pokemonContent[i];
   const { pokemonType } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML(i, pokemonType);
+  document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
 }
 
 function renderPokemonDetailContent(i) {
@@ -36,7 +37,7 @@ function renderPokemonDetailContent(i) {
 function renderPokemonDetailCardHead(i) {
   const pokemon = pokemonContent[i];
   const { pokemonName, pokemonId, pokemonPic } = getPokemonInfo(pokemon);
-  document.getElementById('pokemonDetailCardHead').innerHTML = generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId);
+  document.getElementById('pokemonDetailCardHead').innerHTML = generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId, pokemonPic);
   document.getElementById('pokemonDetailCardPic').src = pokemonPic;
 }
 
@@ -48,9 +49,10 @@ function renderPokemonDetailCardMiddle(i) {
 
 function renderPokemonDetailCardBottom(i) {
   const pokemon = pokemonContent[i];
-  const { pokemonStats } = getPokemonInfo(pokemon); 
+  const { pokemonStats, pokemonType } = getPokemonInfo(pokemon);
   for (let j = 0; j < pokemonStats.length; j++) {
-    document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStasHTML(pokemonStats, j);
+    let actualValue = ((100/maxPokemonStats[j])*pokemonStats[j]['base_stat']);
+    document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStasHTML(pokemonStats, pokemonType, actualValue, j);
   }
 }
 
@@ -93,22 +95,36 @@ function showPreviousPokemonDetailCard(i) {
   showPokemonDetails(i);
 }
 
-function searchPokemonList() {
-  
-  let pokemonList = document.getElementById('pokemonList').innerHTML;
-  pokemonList = "";
+function changeDetailContentToStats() {
+  document.getElementById('pokemonDetailCardStats').classList.add('d-none');
+  document.getElementById('pokemonDetailCardProfile').classList.remove('d-none');
+}
 
-  
+function changeDetailContentToProfile() {
+  document.getElementById('pokemonDetailCardStats').classList.remove('d-none');
+  document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
+}
 
-  
 
+
+/**
+ * function searchPokemonList() {
+  document.getElementById('pokemonList').innerHTML = '';
+  let search = document.getElementById('searchbar').value;
+  
   for (let i = pokemonRange; i < pokemonContent.length; i++) {
-    let search = document.getElementById('searchbar').value;
-    const pokemon = pokemonContent[i];
-    const { pokemonName, pokemonId, pokemonPic, pokemonType } = getPokemonInfo(pokemon);
-    let searchinput = pokemon.includes(search);
-      if (searchinput) {
-        pokemonList += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType);
-      }
+    const pokemonToSearch = pokemonContent[i]['name'];
+    pokemonToSearchArr.push(pokemonToSearch);
+    if (pokemonToSearchArr.includes(search)) {
+      console.log(pokemonToSearchArr);
+    }
   }
 }
+
+
+*function firstLetter(string){
+return string.charAt(0).toUpperCase() + string.slice(1);
+
+}
+
+ */
