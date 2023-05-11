@@ -2,7 +2,6 @@ let pokemonRange = 0;
 let pokemonCount = 20;
 let pokemonContent = [];
 let pokemonAmount = 1010;
-let pokemonToSearchArr = [];
 let maxPokemonStats = [255, 190, 194, 230, 230, 180];
 
 function getPokemonInfo(pokemon) {

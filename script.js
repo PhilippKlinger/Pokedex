@@ -26,12 +26,14 @@ function renderPokemonDetailCard(i) {
   const { pokemonType } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailOverlay').innerHTML = generatePokemonDetailCardHTML(i, pokemonType);
   document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
+  document.getElementById('pokemonDetailCardMoves').classList.add('d-none');
 }
 
 function renderPokemonDetailContent(i) {
   renderPokemonDetailCardHead(i);
-  renderPokemonDetailCardMiddle(i);
-  renderPokemonDetailCardBottom(i);
+  renderPokemonDetailCardProfile(i);
+  renderPokemonDetailCardStats(i);
+  renderPokemonDetailCardMoves(i);
 }
 
 function renderPokemonDetailCardHead(i) {
@@ -41,18 +43,26 @@ function renderPokemonDetailCardHead(i) {
   document.getElementById('pokemonDetailCardPic').src = pokemonPic;
 }
 
-function renderPokemonDetailCardMiddle(i) {
+function renderPokemonDetailCardProfile(i) {
   const pokemon = pokemonContent[i];
   const { movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight } = getPokemonInfo(pokemon);
   document.getElementById('pokemonDetailCardProfile').innerHTML = generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight);
 }
 
-function renderPokemonDetailCardBottom(i) {
+function renderPokemonDetailCardStats(i) {
   const pokemon = pokemonContent[i];
   const { pokemonStats, pokemonType } = getPokemonInfo(pokemon);
   for (let j = 0; j < pokemonStats.length; j++) {
-    let actualValue = ((100/maxPokemonStats[j])*pokemonStats[j]['base_stat']);
-    document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStasHTML(pokemonStats, pokemonType, actualValue, j);
+    let actualValue = ((100 / maxPokemonStats[j]) * pokemonStats[j]['base_stat']);
+    document.getElementById('pokemonDetailCardStats').innerHTML += generatePokemonCardDetailCardStatsHTML(pokemonStats, pokemonType, actualValue, j);
+  }
+}
+
+function renderPokemonDetailCardMoves(i) {
+  const pokemon = pokemonContent[i];
+  const { movesCount, pokemonType } = getPokemonInfo(pokemon);
+  for (let j = 0; j < movesCount.length; j++) {
+    document.getElementById('pokemonDetailCardMoves').innerHTML += generatePokemonCardDetailCardMovesHTML(movesCount, pokemonType, j);
   }
 }
 
@@ -96,35 +106,37 @@ function showPreviousPokemonDetailCard(i) {
 }
 
 function changeDetailContentToStats() {
-  document.getElementById('pokemonDetailCardStats').classList.add('d-none');
-  document.getElementById('pokemonDetailCardProfile').classList.remove('d-none');
+  document.getElementById('pokemonDetailCardStats').classList.remove('d-none');
+  document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
+  document.getElementById('pokemonDetailCardMoves').classList.add('d-none');
 }
 
 function changeDetailContentToProfile() {
-  document.getElementById('pokemonDetailCardStats').classList.remove('d-none');
-  document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
+  document.getElementById('pokemonDetailCardStats').classList.add('d-none');
+  document.getElementById('pokemonDetailCardProfile').classList.remove('d-none');
+  document.getElementById('pokemonDetailCardMoves').classList.add('d-none');
 }
 
+function changeDetailContentToMoves() {
+  document.getElementById('pokemonDetailCardStats').classList.add('d-none');
+  document.getElementById('pokemonDetailCardProfile').classList.add('d-none');
+  document.getElementById('pokemonDetailCardMoves').classList.remove('d-none');
+}
 
-
-/**
- * function searchPokemonList() {
-  document.getElementById('pokemonList').innerHTML = '';
+function searchPokemonList() {
   let search = document.getElementById('searchbar').value;
-  
+  search = search.toLowerCase();
+  document.getElementById('pokemonList').innerHTML = '';
   for (let i = pokemonRange; i < pokemonContent.length; i++) {
-    const pokemonToSearch = pokemonContent[i]['name'];
-    pokemonToSearchArr.push(pokemonToSearch);
-    if (pokemonToSearchArr.includes(search)) {
-      console.log(pokemonToSearchArr);
+    const pokemon = pokemonContent[i];
+    const { pokemonName, pokemonId, pokemonPic, pokemonType } = getPokemonInfo(pokemon);
+    if (pokemonName.toLowerCase().includes(search)) {
+      document.getElementById('pokemonList').innerHTML += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonPic, pokemonType);
     }
   }
 }
 
-
-*function firstLetter(string){
-return string.charAt(0).toUpperCase() + string.slice(1);
-
+function clearSearch() {
+  searchbar.value = '';
+  showPokemonList();
 }
-
- */

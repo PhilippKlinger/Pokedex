@@ -3,6 +3,22 @@ body {
     background-color: rgb(248, 249, 250) !important;
 }
 
+h3::first-letter {
+    text-transform:capitalize;
+}
+
+h4::first-letter {
+    text-transform:capitalize;
+}
+
+p::first-letter {
+    text-transform:capitalize;
+}
+
+li::first-letter {
+    text-transform:capitalize;
+}
+
 .headlinePic {
     background-color: rgb(248, 249, 250)
 }
@@ -26,8 +42,6 @@ body {
 
 .pokemonPic {
     height: 120px;
-    /* object-fit: contain; */
-    /* padding-bottom: 10px; */
     margin-top: 0;
     z-index: 1;
     position: relative;
@@ -35,8 +49,9 @@ body {
     top: 20px;
 }
 
-.pokemonPic:hover {
-    transition: ease-in-out 200ms;
+.pokemonCard:hover img {
+    cursor: pointer;
+    transition: ease-in-out 225ms;
     transform: scale(1.2);
 }
 
@@ -49,7 +64,7 @@ body {
 
 .pokemonCard:hover {
     cursor: pointer;
-    opacity: 0.4;
+    opacity: 0.7;
 }
 
 .pokemonDetailCardButtons {
@@ -62,11 +77,12 @@ body {
 .pokemonDetailCardButtons img:hover {
     cursor: pointer;
     transform: scale(1.2);
-    transition: ease-in-out 150ms;
+    transition: ease-in-out 200ms;
 }
 
 .card {
     box-shadow: 5px 6px 11px 0px rgba(0, 0, 0, 0.75);
+    width: 24rem;
 }
 
 .shadow {
@@ -98,6 +114,7 @@ body {
 
 .modal {
     --bs-modal-width: 0 !important;
+    --bs-modal-bg: none;
 }
 
 .pokemonLoadingBtn {
@@ -120,12 +137,86 @@ body {
 
 .progress, .progress-stacked {
     height: 30px !important;
+    width: 60%;
+}
+
+.progressbarSection {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-bottom: 4px;
+}
+
+.pokemonDetailCardStats {
+    height: 280px;
+}
+
+.pokemonDetailCardProfile {
+    height: 280px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.pokemonDetailCardMoves {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-direction: row;
+    overflow-y: scroll;
+    height: 280px;
+}
+
+.pokemonDetailCardMoves p {
+    padding: 4px;
+    margin-right: 4px;
+    border: solid 1px transparent;
+    border-radius: 5px;
+}
+
+.detailCardBtnSection {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.searchbar {
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    outline: none;
+    border: none;
+    padding: 4px;
+    opacity: 0.7;
+}
+
+.searchbar:hover {
+    opacity: 1;
+    transition: all 200ms ease-in-out;
+}
+
+.searchbarButton {
+    opacity: 0.7;
+    background: white;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    width: 25px;
+    padding: 3px;
+}
+
+.searchbarButton:hover {
+    opacity: 1;
+    cursor: pointer;
+    transition: all 200ms ease-in-out;
+}
+
+.searchbarSection {
+    display: flex;
 }
 
 .spinner {
     height: 50px;
     animation: spinner 1.2s infinite linear;
 }
+
 
 @keyframes spinner {
     from {

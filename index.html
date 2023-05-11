@@ -20,28 +20,23 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <img src="/img/pokdexHeadline.png" width="200px" href="index.html">
-            <div class="navbar" id="navbarSupportedContent">
-                <input class="me-2" id="searchbar" placeholder="Search..." aria-label="Search" onkeydown="searchPokemonList()">
+            <div class="searchbarSection">
+                <input id="searchbar" class="searchbar" placeholder="Search Pokemon" onkeydown="searchPokemonList()">
+                <img onclick="clearSearch()" id="clearBtn" class="searchbarButton" src="./img/undo-48.png">
             </div>
         </div>
     </nav>
-
-
     <div class="modal fade" id="PokemonDetailCardModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content" id="pokemonDetailOverlay">
             </div>
         </div>
     </div>
-
     <div class="pokemonList" id="pokemonList"></div>
-
     <div class="pokemonLoadingBtn mt-3 mb-3">
         <button type="button" class="btn btn-outline-success" id="showMorePokemonButton" onclick="loadMorePokemon()">Show more Pokemon</button>
         <img src="./img/pokeball.png" class="spinner d-none" id="loadingSpinner">
     </div>
-    
-
 </body>
 
 </html>
