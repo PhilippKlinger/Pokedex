@@ -13,15 +13,22 @@
     <link rel="stylesheet" href="pokemonColor.css">
     <script src="pokemonVariables.js"></script>
     <script src="script.js"></script>
-    <script src="htmlTemplates.js"></script>  
+    <script src="htmlTemplates.js"></script>
 </head>
 
 <body onload="loadPokemonData()">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <img src="/img/pokdexHeadline.png" width="200px" href="index.html">
+            <div>
+                <img src="/img/pokdexHeadline.png" width="200px" href="index.html">
+                <img src="./img/pokeball2.png" class="d-none" height="40px" href="index.html">
+            </div>
+            <div>
+                <p id="pokemonContentStatus"></p>
+            </div>
             <div class="searchbarSection">
-                <input id="searchbar" class="searchbar" placeholder="Search Pokemon" onkeydown="searchPokemonList()">
+                <button onclick="searchPokemonList()">Search</button>
+                <input id="searchbar" class="searchbar" placeholder="for Name, ID or Type...">
                 <img onclick="clearSearch()" id="clearBtn" class="searchbarButton" src="./img/undo-48.png">
             </div>
         </div>
@@ -34,7 +41,8 @@
     </div>
     <div class="pokemonList" id="pokemonList"></div>
     <div class="pokemonLoadingBtn mt-3 mb-3">
-        <button type="button" class="btn btn-outline-success" id="showMorePokemonButton" onclick="loadMorePokemon()">Show more Pokemon</button>
+        <button type="button" class="btn btn-outline-success" id="showMorePokemonButton"
+            onclick="showMorePokemon()">Show more Pokemon</button>
         <img src="./img/pokeball.png" class="spinner d-none" id="loadingSpinner">
     </div>
 </body>

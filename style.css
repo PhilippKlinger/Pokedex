@@ -19,6 +19,12 @@ li::first-letter {
     text-transform:capitalize;
 }
 
+.navbar {
+    position: fixed !important;
+    top: 0 !important;
+    z-index: 999 !important;
+}
+
 .headlinePic {
     background-color: rgb(248, 249, 250)
 }
@@ -27,6 +33,7 @@ li::first-letter {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-top: 80px;
 }
 
 .pokemonListPic {
@@ -149,6 +156,15 @@ li::first-letter {
 
 .pokemonDetailCardStats {
     height: 280px;
+}
+
+.pokemonStatsList {
+    display: flex;
+    padding-left: 50px;
+}
+
+.pokemonStatsList img {
+    margin-right: 20px;
 }
 
 .pokemonDetailCardProfile {

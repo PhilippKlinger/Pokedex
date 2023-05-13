@@ -6,7 +6,7 @@ function generatePokemonListHTML(i, pokemonName, pokemonPic, pokemonType) {
   </div>
   <div class="pokemonListPic">
     <img src="./img/pokeball_bg1.png" class="pokemonListPicBg">
-    <img src="${pokemonPic}" class="card-img-top pokemonPic">
+    <img class="card-img-top pokemonPic" id="pokemonListPic${i}" alt="./img/pokeball.png">
   </div>
   `
 }
@@ -49,12 +49,12 @@ function generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId) {
 
 function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight) {
   return /*html*/  `
-    <li class="list-group-item">type: ${pokemonType}</li>
-    <li class="list-group-item">height: ${(pokemonHeight/10)}m</li>
-    <li class="list-group-item">weight: ${(pokemonWeight/10)}kg</li>
-    <li class="list-group-item">base-experience: ${pokemonBaseExp}</li>
-    <li class="list-group-item">ability: ${pokemonAbility}</li>
-    <li class="list-group-item">moves-count: ${movesCount.length}</li>`
+    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/dna.png"> <p>${pokemonType}</p> <img height="30px" src="./img/ability.png"> <p>${pokemonAbility}</p></li>
+    
+    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/height.png"> <p>${(pokemonHeight/10)}m</p> <img height="30px" src="./img/weight.png"> <p>${(pokemonWeight/10)}kg</p></li>
+  
+    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/xp.png"> <p>${pokemonBaseExp} XP</p> <img height="30px" src="./img/count.png"> <p>${movesCount.length} moves</p></li>
+    `
 }
 
 function generatePokemonCardDetailCardStatsHTML(pokemonStats, pokemonType, actualValue, j) {
