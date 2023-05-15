@@ -23,6 +23,7 @@ li::first-letter {
     position: fixed !important;
     top: 0 !important;
     z-index: 999 !important;
+    width: 100% !important;
 }
 
 .headlinePic {
@@ -54,6 +55,12 @@ li::first-letter {
     position: relative;
     right: 100px;
     top: 20px;
+}
+
+.pokemonCard {
+    width: 12rem !important;
+    min-height: 220px !important;
+    max-height: 225px !important;
 }
 
 .pokemonCard:hover img {
@@ -107,6 +114,8 @@ li::first-letter {
     border-radius: 5px;
     padding: 2px;
     width: fit-content;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 .pokemonDetailOverlay {
@@ -160,18 +169,18 @@ li::first-letter {
 
 .pokemonStatsList {
     display: flex;
-    padding-left: 50px;
+    padding-left: 40px;
 }
 
 .pokemonStatsList img {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 
 .pokemonDetailCardProfile {
     height: 280px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .pokemonDetailCardMoves {
@@ -179,6 +188,7 @@ li::first-letter {
     flex-wrap: wrap;
     justify-content: center;
     flex-direction: row;
+    align-content: flex-start;
     overflow-y: scroll;
     height: 280px;
 }
@@ -188,6 +198,7 @@ li::first-letter {
     margin-right: 4px;
     border: solid 1px transparent;
     border-radius: 5px;
+    height: fit-content;
 }
 
 .detailCardBtnSection {
@@ -222,15 +233,32 @@ li::first-letter {
     opacity: 1;
     cursor: pointer;
     transition: all 200ms ease-in-out;
+    transform: scale(1.1);
 }
 
 .searchbarSection {
     display: flex;
 }
 
+.pokemonProfileIcons {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 150px;
+}
+
+.pokemonProfileIcons p {
+    padding-top: 2px
+}
+
+.pokemonCardDetailCardHead {
+    display: flex;
+    justify-content: space-between;
+}
+
 .spinner {
-    height: 50px;
-    animation: spinner 1.2s infinite linear;
+    height: 40px;
+    animation: spinner 3s infinite linear;
 }
 
 

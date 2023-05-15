@@ -20,16 +20,18 @@
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <div>
+                <img src="./img/pokeball.png" class="spinner" id="loadingSpinner">
                 <img src="/img/pokdexHeadline.png" width="200px" href="index.html">
-                <img src="./img/pokeball2.png" class="d-none" height="40px" href="index.html">
+                
+            </div>
+            <div class="searchbarSection" >
+                <img onclick="showRandomPokemon()" id="randomBtn" class="searchbarButton" src="./img/random.png">
+                <img onclick="searchPokemonList()" id="searchBtn" class="searchbarButton" src="./img/search.png">
+                <input onkeypress="searchPokemonListByEnter()" id="searchbar" class="searchbar" placeholder="Pokemon, ID or Type...">
+                <img onclick="clearSearch()" id="clearBtn" class="searchbarButton" src="./img/undo-48.png">
             </div>
             <div>
                 <p id="pokemonContentStatus"></p>
-            </div>
-            <div class="searchbarSection">
-                <button onclick="searchPokemonList()">Search</button>
-                <input id="searchbar" class="searchbar" placeholder="for Name, ID or Type...">
-                <img onclick="clearSearch()" id="clearBtn" class="searchbarButton" src="./img/undo-48.png">
             </div>
         </div>
     </nav>
@@ -41,9 +43,7 @@
     </div>
     <div class="pokemonList" id="pokemonList"></div>
     <div class="pokemonLoadingBtn mt-3 mb-3">
-        <button type="button" class="btn btn-outline-success" id="showMorePokemonButton"
-            onclick="showMorePokemon()">Show more Pokemon</button>
-        <img src="./img/pokeball.png" class="spinner d-none" id="loadingSpinner">
+        <button type="button" class="btn btn-outline-success" id="showMorePokemonButton" onclick="showMorePokemon()">Show more Pokemon</button> 
     </div>
 </body>
 

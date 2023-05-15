@@ -1,12 +1,12 @@
 function generatePokemonListHTML(i, pokemonName, pokemonPic, pokemonType) {
   return  /*html*/ `
-    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" style="width: 12rem" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
+    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
     <div class="card-body">
       <h4 class="card-title">${pokemonName}</h4>
   </div>
   <div class="pokemonListPic">
     <img src="./img/pokeball_bg1.png" class="pokemonListPicBg">
-    <img class="card-img-top pokemonPic" id="pokemonListPic${i}" alt="./img/pokeball.png">
+    <img class="card-img-top pokemonPic" id="pokemonListPic${i}">
   </div>
   `
 }
@@ -43,17 +43,27 @@ function generatePokemonDetailCardHTML(i, pokemonType) {
 
 function generatePokemonCardDetailCardHeadHTML(pokemonName, pokemonId) {
   return /*html*/ `
+  <div class="pokemonCardDetailCardHead">
     <h3 class="card-title">${pokemonName}</h3>
-    <h5 class="card-title">#${pokemonId}</h5>`
+    <h3 class="card-title">#${pokemonId}</h3>
+  </div>
+    `
 }
 
 function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, pokemonWeight, pokemonType, pokemonAbility, pokemonHeight) {
   return /*html*/  `
-    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/dna.png"> <p>${pokemonType}</p> <img height="30px" src="./img/ability.png"> <p>${pokemonAbility}</p></li>
-    
-    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/height.png"> <p>${(pokemonHeight/10)}m</p> <img height="30px" src="./img/weight.png"> <p>${(pokemonWeight/10)}kg</p></li>
-  
-    <li class="list-group-item pokemonStatsList"><img height="30px" src="./img/xp.png"> <p>${pokemonBaseExp} XP</p> <img height="30px" src="./img/count.png"> <p>${movesCount.length} moves</p></li>
+    <li class="list-group-item pokemonStatsList">
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/dna.png"> <p>${pokemonType}</p></div>
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/ability.png"> <p>${pokemonAbility}</p></div>
+    </li>
+    <li class="list-group-item pokemonStatsList">
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/height.png"><p>${(pokemonHeight/10)}m</p></div>
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/weight.png"> <p>${(pokemonWeight/10)}kg</p></div>
+    </li>
+    <li class="list-group-item pokemonStatsList">
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/xp.png"> <p>${pokemonBaseExp} XP</p></div>
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/count.png"> <p>${movesCount.length} Moves</p></div>
+    </li>  
     `
 }
 
