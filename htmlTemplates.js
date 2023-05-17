@@ -1,6 +1,6 @@
 function generatePokemonListHTML(i, pokemonName, pokemonPic, pokemonType) {
   return  /*html*/ `
-    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
+    <div onclick="showPokemonDetails(${i})" class="card m-2 ${pokemonType}-color pokemonCard" type="button" id="card${i}" data-bs-toggle="modal" data-bs-target="#PokemonDetailCardModal">
     <div class="card-body">
       <h4 class="card-title">${pokemonName}</h4>
   </div>

@@ -225,7 +225,6 @@ li::first-letter {
     background: white;
     border-bottom-right-radius: 5px;
     border-top-right-radius: 5px;
-    width: 25px;
     padding: 3px;
 }
 
@@ -238,6 +237,7 @@ li::first-letter {
 
 .searchbarSection {
     display: flex;
+    height: 40px;
 }
 
 .pokemonProfileIcons {

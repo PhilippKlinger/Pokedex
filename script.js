@@ -4,19 +4,30 @@ async function loadPokemonData() {
     let response = await fetch(url);
     let responseAsJSON = await response.json();
     pokemonContent.push(responseAsJSON);
-    checkPokemonContentLenght();
-    showPokemonContentStatus();
+    checkPokemonContent();
   }
 }
 
-function checkPokemonContentLenght() {
+function checkPokemonContentLength() {
   if (pokemonContent.length === 50) {
     showPokemonList();
   }
 }
 
+function checkPokemonContentLength2() {
+  if (pokemonContent.length > (pokemonRangeEnd + 50)) {
+    document.getElementById('showMorePokemonButton').classList.remove('d-none');
+  }
+}
+
 function showPokemonContentStatus() {
   document.getElementById('pokemonContentStatus').innerHTML = `${pokemonContent.length} von ${pokemonAmountToLoad}pokemon ready!`;
+}
+
+function checkPokemonContent() {
+  checkPokemonContentLength();
+  showPokemonContentStatus();
+  checkPokemonContentLength2();
 }
 
 function showPokemonList() {
@@ -26,6 +37,7 @@ function showPokemonList() {
     document.getElementById('pokemonList').innerHTML += generatePokemonListHTML(i, pokemonName, pokemonId, pokemonType);
     document.getElementById(`pokemonListPic${i}`).src = pokemonPic;
   }
+  document.getElementById('showMorePokemonButton').classList.add('d-none');
 }
 
 function showPokemonDetails(i) {
@@ -79,23 +91,11 @@ function renderPokemonDetailCardMoves(i) {
 }
 
 function showMorePokemon() {
-  hideShowMorePokemon();
-  showPokemonList();
-  blockShowMorePokemon();
-}
-
-function hideShowMorePokemon() {
   pokemonRangeEnd += 50;
-  document.getElementById('showMorePokemonButton').classList.add('d-none');
-  document.getElementById('loadingSpinner').classList.remove('d-none');
-  window.scrollTo(0, 99999);
   pokemonRangeStart = (pokemonRangeEnd - 50);
-}
-
-function blockShowMorePokemon() {
+  showPokemonList();
+  checkPokemonContentLength2();
   window.scrollTo(0, 99999);
-  document.getElementById('showMorePokemonButton').classList.remove('d-none');
-  document.getElementById('loadingSpinner').classList.add('d-none');
 }
 
 function showNextPokemonDetailCard(i) {
@@ -135,6 +135,12 @@ function changeDetailContentToMoves() {
   document.getElementById('pokemonDetailCardMoves').classList.remove('d-none');
 }
 
+
+
+///////////////////////////////////////////////////////////////////noch cleanen////////////////////////
+
+
+
 function searchPokemonList() {
   let search = document.getElementById('searchbar').value;
   document.getElementById('showMorePokemonButton').classList.add('d-none');
@@ -153,6 +159,15 @@ function searchPokemonList() {
   } else {
     alert('please fill in searchbar first!')
   }
+
+  if (document.getElementById('pokemonList').innerHTML == '') {
+    document.getElementById('pokemonList').innerHTML =
+    /*html*/ `<div><h2>Sorry no results!</h2>
+              <h5>if it's a valid search category your content is maybe not ready yet, try again later!</h5>
+              <img src="./img/sad-pikachu.gif">
+  </div>`;
+    document.getElementById('pokemonList').innerHTML += ''
+  }
 }
 
 function searchPokemonListByEnter() {
@@ -164,22 +179,28 @@ function searchPokemonListByEnter() {
   });
 }
 
-  function clearSearch() {
-    pokemonRangeStart = 0;
-    searchbar.value = '';
-    document.getElementById('pokemonList').innerHTML = '';
-    document.getElementById('showMorePokemonButton').classList.remove('d-none');
-    showPokemonList();
-  }
+function clearSearch() {
+  pokemonRangeStart = 0;
+  randomPokemon = [];
+  searchbar.value = '';
+  document.getElementById('pokemonList').innerHTML = '';
+  showPokemonList();
+}
 
-  function showRandomPokemon() {
-    document.getElementById('pokemonList').innerHTML = '';
-    document.getElementById('showMorePokemonButton').classList.add('d-none');
-    for (let i = 0; i < 50; i++) {
-      let x = Math.floor((Math.random() * 1010) + 1);
+function showRandomPokemon() {
+  document.getElementById('pokemonList').innerHTML = '';
+  randomPokemon = [];
+  for (let i = 0; i < randomPokemonAmount; i++) {
+    let x = Math.floor((Math.random() * pokemonContent.length) + 1);
+    if (randomPokemon.includes(x) === false) {
+      randomPokemon.push(x);
       const pokemon = pokemonContent[x];
       const { pokemonName, pokemonId, pokemonPic, pokemonType } = getPokemonInfo(pokemon);
       document.getElementById('pokemonList').innerHTML += generatePokemonListHTML(x, pokemonName, pokemonId, pokemonType);
       document.getElementById(`pokemonListPic${x}`).src = pokemonPic;
+    } else {
+      randomPokemonAmount++;
     }
   }
+  document.getElementById('showMorePokemonButton').classList.add('d-none');
+}
