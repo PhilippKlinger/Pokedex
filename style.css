@@ -4,19 +4,19 @@ body {
 }
 
 h3::first-letter {
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 h4::first-letter {
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 p::first-letter {
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 li::first-letter {
-    text-transform:capitalize;
+    text-transform: capitalize;
 }
 
 .navbar {
@@ -24,10 +24,28 @@ li::first-letter {
     top: 0 !important;
     z-index: 999 !important;
     width: 100% !important;
+    height: 80px !important;
 }
 
 .headlinePic {
     background-color: rgb(248, 249, 250)
+}
+
+.headerPic {
+    width: 200px;
+}
+
+.pokemonContentStatus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-right: 20px;
+    width: 120px;
+    justify-content: space-between;
+}
+
+.pokemonContentStatus h6 {
+    margin-bottom: 0;
 }
 
 .pokemonList {
@@ -97,6 +115,7 @@ li::first-letter {
 .card {
     box-shadow: 5px 6px 11px 0px rgba(0, 0, 0, 0.75);
     width: 24rem;
+    border: transparent !important;
 }
 
 .shadow {
@@ -113,9 +132,10 @@ li::first-letter {
     border: solid 1px transparent;
     border-radius: 5px;
     padding: 2px;
-    width: fit-content;
+    width: auto;
     white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .pokemonDetailOverlay {
@@ -148,10 +168,11 @@ li::first-letter {
 }
 
 .progress-bar-striped {
-    background-image: linear-gradient(90deg,rgba(255,255,255,.15) 50%,transparent 50%,transparent 80%,rgba(255,255,255,.15) 50%,rgba(255,255,255,.15) 75%,transparent 75%,transparent) !important;
+    background-image: linear-gradient(90deg, rgba(255, 255, 255, .15) 50%, transparent 50%, transparent 80%, rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .15) 75%, transparent 75%, transparent) !important;
 }
 
-.progress, .progress-stacked {
+.progress,
+.progress-stacked {
     height: 30px !important;
     width: 60%;
 }
@@ -207,8 +228,6 @@ li::first-letter {
 }
 
 .searchbar {
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
     outline: none;
     border: none;
     padding: 4px;
@@ -223,9 +242,18 @@ li::first-letter {
 .searchbarButton {
     opacity: 0.7;
     background: white;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
     padding: 3px;
+}
+
+.searchbarButtonRight {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.searchbarButtonLeft {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    margin-right: 2px;
 }
 
 .searchbarButton:hover {
@@ -233,11 +261,14 @@ li::first-letter {
     cursor: pointer;
     transition: all 200ms ease-in-out;
     transform: scale(1.1);
+    border-radius: 5px;
 }
 
 .searchbarSection {
     display: flex;
     height: 40px;
+    border: solid 1px #e9ecef;
+    border-radius: 5px;
 }
 
 .pokemonProfileIcons {
@@ -261,7 +292,6 @@ li::first-letter {
     animation: spinner 3s infinite linear;
 }
 
-
 @keyframes spinner {
     from {
         transform: rotate(0deg);
@@ -269,5 +299,51 @@ li::first-letter {
 
     to {
         transform: rotate(359deg);
+    }
+}
+
+@media (max-width: 750px) {
+    .headerPic {
+        display: none;
+    }
+}
+
+@media (max-width: 550px) {
+    .pokemonContentStatus {
+        display: none;
+    }
+
+    .container-fluid {
+        justify-content: center !important;
+    }
+
+    .pokemonCard {
+        width: 8rem !important;
+        min-height: 180px !important;
+        max-height: 185px !important;
+    }
+
+    .pokemonPic {
+        height: 95px;
+        right: 100px;
+        top: 0px;
+    }
+
+    .pokemonListPicBg {
+        height: 110px;
+        left: 20px;
+        top: -15px;
+    }
+
+    h4 {
+        font-size: 1rem;
+    }
+
+    .card {
+        width: 20rem;
+    }
+
+    .pokemonDetailCardStats p {
+        font-size: 0.8rem;
     }
 }

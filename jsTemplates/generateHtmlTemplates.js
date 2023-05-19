@@ -57,8 +57,8 @@ function generatePokemonCardDetailCardProfileHTML(movesCount, pokemonBaseExp, po
       <div class="pokemonProfileIcons"><img height="30px" src="./img/ability.png"> <p>${pokemonAbility}</p></div>
     </li>
     <li class="list-group-item pokemonStatsList">
-      <div class="pokemonProfileIcons"><img height="30px" src="./img/height.png"><p>${(pokemonHeight/10)}m</p></div>
-      <div class="pokemonProfileIcons"><img height="30px" src="./img/weight.png"> <p>${(pokemonWeight/10)}kg</p></div>
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/height.png"><p>${(pokemonHeight / 10)}m</p></div>
+      <div class="pokemonProfileIcons"><img height="30px" src="./img/weight.png"> <p>${(pokemonWeight / 10)}kg</p></div>
     </li>
     <li class="list-group-item pokemonStatsList">
       <div class="pokemonProfileIcons"><img height="30px" src="./img/xp.png"> <p>${pokemonBaseExp} XP</p></div>
@@ -81,4 +81,11 @@ function generatePokemonCardDetailCardMovesHTML(movesCount, pokemonType, j) {
   return /*html*/ `
   <p class="${pokemonType}-color mb-1">${movesCount[j]['move']['name']}</p>
   `
+}
+
+function generateNoResultScreenHTML() {
+  return /*html*/ `<div><h2>Sorry no results!</h2>
+  <h5>if it's a valid search category your content is maybe not ready yet, try again later!</h5>
+  <img src="./img/sad-pikachu.gif">
+</div>`;
 }

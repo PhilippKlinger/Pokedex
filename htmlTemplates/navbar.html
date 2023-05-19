@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <div>
+            <img src="/img/pokdexHeadline.png" class="headerPic" href="index.html">
+        </div>
+        <div class="searchbarSection" >
+            <img onclick="showRandomPokemon()" id="randomBtn" class="searchbarButton searchbarButtonLeft" src="./img/random.png">
+            <img onclick="searchPokemonList()" id="searchBtn" class="searchbarButton" src="./img/search.png">
+            <input onkeypress="searchPokemonListByEnter()" id="searchbar" class="searchbar" placeholder="Pokemon, ID or Type...">
+            <img onclick="clearSearch()" id="clearBtn" class="searchbarButton .searchbarButtonRight" src="./img/undo-48.png">
+        </div>
+        <div class="pokemonContentStatus">
+            <img src="./img/pokeball.png" class="spinner" id="loadingSpinner">
+            <h6 id="pokemonContentStatus"></h6>
+        </div>
+    </div>
+</nav>
