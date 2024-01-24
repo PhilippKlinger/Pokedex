@@ -84,7 +84,7 @@ function generatePokemonCardDetailCardMovesHTML(movesCount, pokemonType, j) {
 }
 
 function generateNoResultScreenHTML() {
-  return /*html*/ `<div><h2>Sorry no results!</h2>
+  return /*html*/ `<div class="noResultScreen"><h2>Sorry no results!</h2>
   <h5>if it's a valid search category your content is maybe not ready yet, try again later!</h5>
   <img src="./img/sad-pikachu.gif">
 </div>`;

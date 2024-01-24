@@ -1,13 +1,25 @@
 async function loadPokemonData() {
   await includeHTML();
-  for (let i = pokemonContent.length; i < pokemonAmountToLoad; i++) {
-    let url = `https://pokeapi.co/api/v2/pokemon/${i + 1}/`;
-    let response = await fetch(url);
-    let responseAsJSON = await response.json();
-    pokemonContent.push(responseAsJSON);
-    checkPokemonContent();
+  const batchSize = 10; // Adjust batch size as needed
+  for (let i = 0; i < pokemonAmountToLoad; i += batchSize) {
+    const batchUrls = [];
+    for (let j = i; j < i + batchSize && j < pokemonAmountToLoad; j++) {
+      batchUrls.push(`https://pokeapi.co/api/v2/pokemon/${j + 1}/`);
+    }
+    try {
+      const responses = await Promise.all(batchUrls.map(url => fetch(url)));
+      const jsonResponses = await Promise.all(responses.map(response => response.json()));
+      jsonResponses.forEach(response => {
+        pokemonContent.push(response);
+        checkPokemonContent();
+      });
+    } catch (error) {
+      console.error('Error fetching Pokémon data:', error);
+    }
   }
 }
+
+
 
 async function includeHTML() {
   let includeElements = document.querySelectorAll('[w3-include-html]');
@@ -24,7 +36,11 @@ async function includeHTML() {
 }
 
 function checkPokemonContentLength() {
+  if (pokemonContent.length < 50) {
+  document.getElementById('pokemonList').innerHTML = /*html*/ `<div class="noResultScreen"><h3>Please wait until the first 50 Pokemon are ready!</h3></div>`;
+  }
   if (pokemonContent.length === 50) {
+    document.getElementById('pokemonList').innerHTML = '';
     showPokemonList();
   }
 }
@@ -36,7 +52,7 @@ function checkPokemonContentLength2() {
 }
 
 function showPokemonContentStatus() {
-  document.getElementById('pokemonContentStatus').innerHTML = `${pokemonContent.length}/${pokemonAmountToLoad}`;
+  document.getElementById('pokemonContentStatus').innerHTML = `${pokemonContent.length}|${pokemonAmountToLoad}`;
 }
 
 function checkPokemonContent() {
